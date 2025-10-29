@@ -19,7 +19,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="#" class="active">Home</a></li>
       <li><a href="#">About Us</a></li>
-      <li><a href="#">Cat Care</a></li>
+      <li><a href="/dash">Cat Care</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
 
