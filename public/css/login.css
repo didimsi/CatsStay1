@@ -15,16 +15,21 @@
 
 body {
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Login Container */
 .login-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
+}
+
+/* Mobile Header Decoration - Hidden on Desktop */
+.mobile-header {
+  display: none;
 }
 
 /* Left Side - Form */
@@ -34,6 +39,7 @@ body {
   justify-content: center;
   padding: 40px;
   background: #FFF;
+  position: relative;
 }
 
 .login-content {
@@ -254,7 +260,7 @@ body {
 .cat-illustration {
   position: relative;
   width: 500px;
-  height: 5 00px;
+  height: auto;
   object-fit: contain;
   z-index: 2;
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
@@ -334,8 +340,13 @@ body {
 
 /* Responsive Design */
 @media (max-width: 992px) {
+  body {
+    overflow-y: auto;
+  }
+
   .login-container {
     grid-template-columns: 1fr;
+    min-height: 100vh;
   }
 
   .login-right {
@@ -343,17 +354,151 @@ body {
   }
 
   .login-left {
-    padding: 30px;
+    padding: 0;
+    background: #FFF;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mobile Illustration Header */
+  .mobile-header {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-height: 320px;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+    background: linear-gradient(135deg, #FFA726 0%, #FF9800 100%);
+    flex-shrink: 0;
+  }
+
+  .mobile-blob {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: morphBlobMobile 6s ease-in-out infinite;
+  }
+
+  @keyframes morphBlobMobile {
+    0%, 100% {
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    50% {
+      border-radius: 70% 30% 50% 50% / 60% 40% 60% 40%;
+      transform: translate(-50%, -50%) rotate(180deg);
+    }
+  }
+
+  .mobile-cat {
+    position: absolute;
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    animation: floatMobileCat 3s ease-in-out infinite;
+  }
+
+  @keyframes floatMobileCat {
+    0%, 100% {
+      transform: translate(-50%, -50%) translateY(0);
+    }
+    50% {
+      transform: translate(-50%, -50%) translateY(-15px);
+    }
+  }
+
+  .mobile-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .mobile-dot {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: floatMobileDot 5s ease-in-out infinite;
+  }
+
+  .mobile-dot:nth-child(1) {
+    width: 25px;
+    height: 25px;
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .mobile-dot:nth-child(2) {
+    width: 30px;
+    height: 30px;
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 1s;
+  }
+
+  .mobile-dot:nth-child(3) {
+    width: 20px;
+    height: 20px;
+    top: 70%;
+    left: 15%;
+    animation-delay: 2s;
+  }
+
+  @keyframes floatMobileDot {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
 
   .login-content {
     max-width: 500px;
+    width: 100%;
+    padding: 30px 25px;
+    margin: 0 auto;
+    flex: 1;
+  }
+
+  .login-title {
+    text-align: center;
+  }
+
+  .login-subtitle {
+    text-align: center;
   }
 }
 
 @media (max-width: 768px) {
-  .login-left {
-    padding: 25px;
+  .mobile-header {
+    min-height: 280px;
+    border-radius: 0 0 25px 25px;
+  }
+
+  .mobile-cat {
+    width: 220px;
+    height: auto;
+  }
+
+  .mobile-blob {
+    width: 300px;
+    height: 300px;
+  }
+
+  .login-content {
+    padding: 25px 20px;
   }
 
   .login-title {
@@ -375,8 +520,38 @@ body {
 }
 
 @media (max-width: 480px) {
-  .login-left {
-    padding: 20px;
+  .mobile-header {
+    min-height: 250px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .mobile-cat {
+    width: 180px;
+    height: auto;
+  }
+
+  .mobile-blob {
+    width: 250px;
+    height: 250px;
+  }
+
+  .mobile-dot:nth-child(1) {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-dot:nth-child(2) {
+    width: 25px;
+    height: 25px;
+  }
+
+  .mobile-dot:nth-child(3) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .login-content {
+    padding: 25px 20px;
   }
 
   .login-title {

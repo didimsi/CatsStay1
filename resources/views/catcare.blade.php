@@ -15,15 +15,15 @@
     </div>
 
     <ul class="nav-menu" id="navMenu">
-      <li><a href="#" class="active">Home</a></li>
-      <li><a href="#">About Us</a></li>
-      <li><a href="/dash">Cat Care</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/aboutus">About Us</a></li>
+      <li><a href="/catcare" class="active">Cat Care</a></li>
+      <li><a href="/contact">Contact</a></li>
     </ul>
 
     <div class="nav-buttons" id="navButtons">
-      <button class="nav-btn btn-signin">Sign In</button>
-      <button class="nav-btn btn-signup">Sign Up</button>
+      <button onclick="window.location.href='/login'" class="nav-btn btn-signin">Sign In</button>
+      <button onclick="window.location.href='/signup'" class="nav-btn btn-signup">Sign Up</button>
     </div>
 
     <div class="hamburger" id="hamburger">
@@ -38,14 +38,14 @@
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-content">
       <ul class="mobile-nav-menu">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Cat Core</a></li>
-        <li><a href="#">Contact</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/aboutus">About Us</a></li>
+      <li><a href="/catcare" class="active">Cat Care</a></li>
+      <li><a href="/contact">Contact</a></li>
       </ul>
       <div class="mobile-nav-buttons">
-        <button class="nav-btn btn-signin">Sign In</button>
-        <button class="nav-btn btn-signup">Sign Up</button>
+      <button onclick="window.location.href='/login'" class="nav-btn btn-signin">Sign In</button>
+      <button onclick="window.location.href='/signup'" class="nav-btn btn-signup">Sign Up</button>
       </div>
     </div>
   </div>
@@ -369,74 +369,8 @@
   </div>
 </footer>
 
-
+<script src="js/nav.js"></script>
     <script>
-        const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-const body = document.body;
-
-// Function to toggle menu and body scroll
-function toggleMenu() {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    
-    // Disable/Enable body scroll
-    if (mobileMenu.classList.contains('active')) {
-        body.style.overflow = 'hidden';
-    } else {
-        body.style.overflow = 'auto';
-    }
-}
-
-// Function to close menu
-function closeMenu() {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('active');
-    body.style.overflow = 'auto';
-}
-
-// Hamburger click event
-hamburger.addEventListener('click', toggleMenu);
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-        if (mobileMenu.classList.contains('active')) {
-            closeMenu();
-        }
-    }
-});
-
-// Close mobile menu when clicking a menu item
-const mobileMenuLinks = document.querySelectorAll('.mobile-nav-menu a');
-mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-});
-
-// Smooth scroll for buttons (optional)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Sticky Navbar with Scroll Effect
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
         function showDetail(name, imageUrl) {
             document.getElementById('detailPage').classList.add('active');
             document.getElementById('cardsGrid').classList.add('hidden');

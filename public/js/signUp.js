@@ -288,6 +288,8 @@ document.addEventListener('DOMContentLoaded', function() {
       stepFinish.classList.remove('active');
       stepInfo.classList.add('active');
       currentStep = 2;
+      // Keep back button visible
+      btnBack.style.display = 'flex';
     } else if (currentStep === 2) {
       // Go back to step 1
       stepInfo.classList.remove('active');
